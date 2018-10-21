@@ -1,4 +1,4 @@
-pragma solidity 0.4.25;
+pragma solidity 0.4.20;
 contract Casino {
    address public owner;
    uint256 public minimumBet;
@@ -13,7 +13,7 @@ contract Casino {
 
    mapping(address => Player) public playerInfo;
    function() public payable {}
-   constructor(uint256 _minimumBet) public {
+   function Casino(uint256 _minimumBet) public {
       owner = msg.sender;
       if(_minimumBet != 0 ) minimumBet = _minimumBet;
    }
