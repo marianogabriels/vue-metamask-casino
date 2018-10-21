@@ -38,15 +38,13 @@ contract Casino {
       totalBet += msg.value;
    }
 
-
-   // Warn: insecure random 
    function generateNumberWinner() public {
-      uint256 numberGenerated = block.number % 10 + 1; // This isn't secure
+      uint256 numberGenerated = block.number % 10 + 1; 
       distributePrizes(numberGenerated);
    }
 
    function distributePrizes(uint256 numberWinner) public {
-      address[3] memory winners;
+      address[3] memory winners; 
       uint256 count = 0; 
       for(uint256 i = 0; i < players.length; i++){
          address playerAddress = players[i];
@@ -54,12 +52,12 @@ contract Casino {
             winners[count] = playerAddress;
             count++;
          }
-         delete playerInfo[playerAddress];
+         delete playerInfo[playerAddress]; 
       }
       players.length = 0;
       uint256 winnerEtherAmount = totalBet / winners.length;
       for(uint256 j = 0; j < count; j++){
-         if(winners[j] != address(0))
+         if(winners[j] != address(0)) 
          winners[j].transfer(winnerEtherAmount);
       }
    }
