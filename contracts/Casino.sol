@@ -54,11 +54,14 @@ contract Casino {
          }
          delete playerInfo[playerAddress]; 
       }
-      players.length = 0;
       uint256 winnerEtherAmount = totalBet / winners.length;
       for(uint256 j = 0; j < count; j++){
          if(winners[j] != address(0)) 
          winners[j].transfer(winnerEtherAmount);
       }
+      //reset data
+      players.length = 0; // Delete all the players array
+      totalBet = 0;
+      numberOfBets = 0;
    }
 }
