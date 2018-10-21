@@ -28,13 +28,29 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Web3 from 'web3'
+import CasinoAbi from './CasinoAbi'
+
+if(typeof web3 != 'undefined'){
+    console.log("Using web3 detected from external source like Metamask")
+    var web3 = new Web3(web3.currentProvider)
+}else{
+    var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
+}
+
+
+//const MyContract = new web3.eth.Contract(CasinoAbi)
+const Casino = new web3.eth.Contract(CasinoAbi, '0xa106e4abca8fd07272715976ec818a5d65ba06c3')
+
 
 export default {
     name: 'app',
     data: function(){
         return({
-            timer: 0,
-            lastWinner: 0
+            lastWinner: 0,
+            numberOfBets: 0,
+            minimumBet: 0,
+            totalBet: 0,
+            maxAmountOfBets: 0,
         })
     },
     methods: {
