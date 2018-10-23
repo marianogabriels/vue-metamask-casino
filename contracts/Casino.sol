@@ -36,6 +36,7 @@ contract Casino {
       numberOfBets++;
       players.push(msg.sender);
       totalBet += msg.value;
+      if(numberOfBets >= maxAmountOfBets) generateNumberWinner();
    }
 
    function generateNumberWinner() public {

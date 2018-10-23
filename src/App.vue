@@ -68,21 +68,20 @@ export default {
     methods: {
         vote: function(value) {
             Casino.methods.bet(value).send({
-                gas: 100000,
+                gas: 1000000,
                 from: this.address,
                 value: web3.utils.toWei(String(0.1), 'ether')
             })
         }
     },
     mounted: function(){
-        web3.eth.getAccounts().then(function(e) { this.address = e[0] }.bind(this) )
-        Casino.methods.numberOfBets().call().then((e) => {
-            this.numberOfBets = e
-        })
+        web3.eth.getAccounts().then( (e) => { 
+            this.address = e[0] 
+            Casino.methods.numberOfBets().call({from: this.address}).then((e) => {
+                this.numberOfBets = e
+            })
+        } )
     },
-    components: {
-        HelloWorld
-    }
 }
 </script>
 
