@@ -1,5 +1,7 @@
 # metamask-example
 
+A Vue/web3js/Ethereum casino example
+
 ## Project setup
 ```
 yarn install
